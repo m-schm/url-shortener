@@ -20,6 +20,9 @@ description:         Please see the README on GitHub at <https://github.com/gith
 
 dependencies:
 - base >= 4.7 && < 5
+- aeson >= 1.5 && < 2
+- servant-server >= 0.18 && < 1
+- text >= 1.2 && < 2
 
 library:
   source-dirs: src
@@ -31,6 +34,12 @@ library:
   - -Wincomplete-uni-patterns
   - -Wpartial-fields
   - -Wredundant-constraints
+
+default-extensions:
+- DataKinds
+- DerivingStrategies
+- GeneralizedNewtypeDeriving
+- TypeOperators
 
 executables:
   url-shortener-exe:

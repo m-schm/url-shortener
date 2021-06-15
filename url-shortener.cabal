@@ -7,11 +7,11 @@ cabal-version: 1.12
 name:           url-shortener
 version:        0.1.0.0
 description:    Please see the README on GitHub at <https://github.com/githubuser/url-shortener#readme>
-homepage:       https://github.com/githubuser/url-shortener#readme
-bug-reports:    https://github.com/githubuser/url-shortener/issues
-author:         Author name here
-maintainer:     example@example.com
-copyright:      2021 Author name here
+homepage:       https://github.com/m-schm/url-shortener#readme
+bug-reports:    https://github.com/m-schm/url-shortener/issues
+author:         m-schm
+maintainer:     m-schm
+copyright:      2021 m-schm
 license:        BSD3
 license-file:   LICENSE
 build-type:     Simple
@@ -21,17 +21,26 @@ extra-source-files:
 
 source-repository head
   type: git
-  location: https://github.com/githubuser/url-shortener
+  location: https://github.com/m-schm/url-shortener
 
 library
   exposed-modules:
-      Lib
+      Shortener.API
   other-modules:
       Paths_url_shortener
   hs-source-dirs:
       src
+  default-extensions:
+      DataKinds
+      DerivingStrategies
+      GeneralizedNewtypeDeriving
+      TypeOperators
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints
   build-depends:
-      base >=4.7 && <5
+      aeson >=1.5 && <2
+    , base >=4.7 && <5
+    , servant-server >=0.18 && <1
+    , text >=1.2 && <2
   default-language: Haskell2010
 
 executable url-shortener-exe
@@ -40,9 +49,17 @@ executable url-shortener-exe
       Paths_url_shortener
   hs-source-dirs:
       app
-  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  default-extensions:
+      DataKinds
+      DerivingStrategies
+      GeneralizedNewtypeDeriving
+      TypeOperators
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints
   build-depends:
-      base >=4.7 && <5
+      aeson >=1.5 && <2
+    , base >=4.7 && <5
+    , servant-server >=0.18 && <1
+    , text >=1.2 && <2
     , url-shortener
   default-language: Haskell2010
 
@@ -53,8 +70,16 @@ test-suite url-shortener-test
       Paths_url_shortener
   hs-source-dirs:
       test
+  default-extensions:
+      DataKinds
+      DerivingStrategies
+      GeneralizedNewtypeDeriving
+      TypeOperators
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      base >=4.7 && <5
+      aeson >=1.5 && <2
+    , base >=4.7 && <5
+    , servant-server >=0.18 && <1
+    , text >=1.2 && <2
     , url-shortener
   default-language: Haskell2010
