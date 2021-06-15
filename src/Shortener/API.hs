@@ -1,6 +1,6 @@
 module Shortener.API
   ( ShortId(..), FullUrl(..)
-  , API, server
+  , API
   ) where
 
 import Servant
@@ -25,12 +25,3 @@ newtype FullUrl = FullUrl Text
 type API =
        "shorten" :> ReqBody '[PlainText, JSON] FullUrl :> Post '[PlainText, JSON] ShortId
   :<|> Capture "id" ShortId :> Get '[PlainText, JSON] FullUrl
-
-server :: Server API
-server = serveShorten :<|> serveUnshorten where
-
-  serveShorten :: FullUrl -> Handler ShortId
-  serveShorten fullUrl = error "TODO"
-
-  serveUnshorten :: ShortId -> Handler FullUrl
-  serveUnshorten shortUrl = error "TODO"
