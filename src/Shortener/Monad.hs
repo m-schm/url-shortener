@@ -1,4 +1,4 @@
-module Shortener.Monad where
+module Shortener.Monad (MonadShortener(..)) where
 
 import Shortener.API
 
@@ -6,5 +6,6 @@ import Shortener.API
 -- a 'ShortId' or (possibly) expand the other way. There is intentionally no
 -- 'MonadIO' superclass, so it can be mocked in tests.
 class Monad m => MonadShortener m where
+  {-# MINIMAL shorten, expand #-}
   shorten :: FullUrl -> m ShortId
   expand :: ShortId -> m (Maybe FullUrl)
