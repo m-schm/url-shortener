@@ -1,10 +1,9 @@
 name:                url-shortener
 version:             0.1.0.0
-github:              "githubuser/url-shortener"
+github:              "m-schm/url-shortener"
 license:             BSD3
-author:              "Author name here"
-maintainer:          "example@example.com"
-copyright:           "2021 Author name here"
+author:              "m-schm"
+copyright:           "2021 m-schm"
 
 extra-source-files:
 - README.md
@@ -24,6 +23,14 @@ dependencies:
 
 library:
   source-dirs: src
+  ghc-options:
+  - -Wall
+  - -Wcompat
+  - -Widentities
+  - -Wincomplete-record-updates
+  - -Wincomplete-uni-patterns
+  - -Wpartial-fields
+  - -Wredundant-constraints
 
 executables:
   url-shortener-exe:
@@ -33,6 +40,13 @@ executables:
     - -threaded
     - -rtsopts
     - -with-rtsopts=-N
+    - -Wall
+    - -Wcompat
+    - -Widentities
+    - -Wincomplete-record-updates
+    - -Wincomplete-uni-patterns
+    - -Wpartial-fields
+    - -Wredundant-constraints
     dependencies:
     - url-shortener
 
