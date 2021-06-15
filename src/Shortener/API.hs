@@ -13,6 +13,7 @@ newtype ShortId = ShortId Text
   deriving newtype
     ( FromJSON, ToJSON
     , MimeRender PlainText, MimeUnrender PlainText
+    , FromHttpApiData, ToHttpApiData
     )
 
 -- | Newtype wrapper for full-size URLs
@@ -20,6 +21,7 @@ newtype FullUrl = FullUrl Text
   deriving newtype
     ( FromJSON, ToJSON
     , MimeRender PlainText, MimeUnrender PlainText
+    , FromHttpApiData, ToHttpApiData
     )
 
 type API =
