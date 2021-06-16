@@ -9,6 +9,7 @@ import Control.Monad.Except (ExceptT(..), runExceptT)
 import Control.Monad.IO.Class (MonadIO)
 import Control.Monad.Reader (ReaderT)
 import Control.Monad.Trans (lift)
+import Data.Functor ((<&>))
 import Database.Persist
 import Database.Persist.Postgresql
 import GHC.Stack (HasCallStack)
@@ -45,7 +46,8 @@ instance MonadShortener PostgresHandler where
     return shortId
 
   expand :: ShortId -> PostgresHandler (Maybe FullUrl)
-  expand = error "TODO: expand"
+  expand shortId = liftQuery (getBy $ UniqueShortId shortId)
+    <&> fmap (urlFullUrl . entityVal)
 
 -- | Finds a 'ShortId' from an infinite list that isn't yet used in the db;
 -- returns it without writing anything. Fails on an empty list.
