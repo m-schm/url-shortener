@@ -30,6 +30,7 @@ library
       Shortener.DB.Schema
       Shortener.Monad
       Shortener.Server
+      Shortener.Shorten
   other-modules:
       Paths_url_shortener
   hs-source-dirs:
@@ -50,6 +51,8 @@ library
       aeson >=1.5 && <2
     , base >=4.7 && <5
     , bytestring >=0.10 && <2
+    , cryptonite >=0.27 && <1
+    , memory >=0.15 && <1
     , monad-logger >=0.3 && <1
     , mtl >=2.2 && <3
     , persistent >=2.11 && <3
@@ -81,6 +84,8 @@ executable url-shortener-exe
       aeson >=1.5 && <2
     , base >=4.7 && <5
     , bytestring >=0.10 && <2
+    , cryptonite >=0.27 && <1
+    , memory >=0.15 && <1
     , monad-logger >=0.3 && <1
     , mtl >=2.2 && <3
     , persistent >=2.11 && <3
@@ -115,6 +120,8 @@ test-suite url-shortener-test
       aeson >=1.5 && <2
     , base >=4.7 && <5
     , bytestring >=0.10 && <2
+    , cryptonite >=0.27 && <1
+    , memory >=0.15 && <1
     , monad-logger >=0.3 && <1
     , mtl >=2.2 && <3
     , persistent >=2.11 && <3
