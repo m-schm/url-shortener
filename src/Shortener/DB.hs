@@ -42,7 +42,7 @@ instance MonadShortener PostgresHandler where
     (shortId, state) <- findUnclaimed fullUrl urls
     case state of
       Unclaimed -> writeUrl shortId fullUrl
-      Duplicate -> pure () -- already found, no need to write
+      Duplicate -> pure () -- already in db, no need to write
     return shortId
 
   expand :: ShortId -> PostgresHandler (Maybe FullUrl)
