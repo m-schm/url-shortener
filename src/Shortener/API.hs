@@ -30,5 +30,5 @@ newtype FullUrl = FullUrl Text
     )
 
 type API =
-       "shorten" :> ReqBody '[PlainText, JSON] FullUrl :> Post '[PlainText, JSON] ShortId
+       "shorten" :> ReqBody '[PlainText, JSON] FullUrl :> Put '[PlainText, JSON] ShortId
   :<|> Capture "id" ShortId :> Get '[PlainText, JSON] FullUrl

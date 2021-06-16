@@ -15,5 +15,5 @@ server = shorten :<|> unshorten where
 
 notFound :: ShortId -> ServerError
 notFound (ShortId sh) =
-  let msg = "Not found: " <> "/" <> sh
+  let msg = "Not found: /" <> sh
   in err404 { errBody = LB.fromStrict $ T.encodeUtf8 msg }
