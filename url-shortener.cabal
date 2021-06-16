@@ -29,8 +29,9 @@ library
       Shortener.DB
       Shortener.DB.Schema
       Shortener.Monad
-      Shortener.Server
       Shortener.Shorten
+      Shortener.Types
+      Shortener.UI
   other-modules:
       Paths_url_shortener
   hs-source-dirs:
