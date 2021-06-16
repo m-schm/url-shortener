@@ -27,12 +27,14 @@ newtype PostgresHandler backend a =
     )
 
 instance MonadShortener (PostgresHandler backend) where
+  shorten :: FullUrl -> PostgresHandler backend ShortId
   shorten fullUrl = do
     let urls = createShortIds fullUrl
     shortId <- shortenWith urls fullUrl
     writeUrl shortId fullUrl
     return shortId
 
+  expand :: ShortId -> PostgresHandler backend (Maybe FullUrl)
   expand = error "TODO: expand"
 
 shortenWith :: [ShortId] -> FullUrl -> PostgresHandler backend ShortId
