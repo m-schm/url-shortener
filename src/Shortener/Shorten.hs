@@ -45,11 +45,3 @@ toBase64 n =
 -- @
 base64 :: [Char]
 base64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_"
-
--- | Length (in characters) of generated 'ShortId's
---
--- @
--- shortIdLen = 6
--- @
-shortIdLen :: Int
-shortIdLen = 6
