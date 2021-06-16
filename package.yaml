@@ -23,6 +23,8 @@ dependencies:
 - aeson >= 1.5 && < 2
 - bytestring >= 0.10 && < 2
 - mtl >= 2.2 && < 3
+- persistent >= 2.11 && < 3
+- persistent-template >= 2.9 && < 3
 - servant-server >= 0.18 && < 1
 - text >= 1.2 && < 2
 
