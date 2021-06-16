@@ -3,11 +3,12 @@ module Shortener.DB
   , runPostgresHandler
   ) where
 
+import Control.Monad (void)
 import Control.Monad.Error.Class (MonadError)
-import Control.Monad.Except (ExceptT(..), lift, runExceptT)
+import Control.Monad.Except (ExceptT(..), runExceptT)
 import Control.Monad.IO.Class (MonadIO)
 import Control.Monad.Reader (ReaderT)
-import Data.Maybe (isJust)
+import Control.Monad.Trans (lift)
 import Database.Persist
 import Database.Persist.Postgresql
 import GHC.Stack (HasCallStack)
@@ -58,13 +59,13 @@ findUnclaimed fullUrl = foldr tryThisOne bail where
   tryThisOne shortId nextTry = do
     found <- liftQuery $ getBy (UniqueShortId shortId)
     case found of
-      Just (Entity k v)
+      Just (Entity _ v)
         | urlFullUrl v == fullUrl -> pure $ (shortId, Duplicate)
         | otherwise               -> nextTry
       Nothing                     -> pure $ (shortId, Unclaimed)
 
 writeUrl :: ShortId -> FullUrl -> PostgresHandler ()
-writeUrl = _
+writeUrl shortId fullUrl = void $ liftQuery $ insert $ Url shortId fullUrl
 
 liftQuery :: ReaderT SqlBackend IO a -> PostgresHandler a
 liftQuery = PostgresHandler . lift
