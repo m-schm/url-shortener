@@ -4,12 +4,15 @@ module Shortener.DB
   ) where
 
 import Control.Monad.Error.Class (MonadError)
-import Servant (Handler(..), ServerError)
-import Shortener.Monad (MonadShortener(..))
-import Shortener.API (FullUrl, ShortId)
+import Control.Monad.Except (ExceptT(..), lift, runExceptT)
+import Control.Monad.IO.Class (MonadIO)
+import Control.Monad.Reader (ReaderT)
 import Database.Persist
 import Database.Persist.Postgresql
-import Control.Monad.Except (ExceptT(..), lift)
+import Servant (Handler(..), ServerError)
+import Shortener.API (FullUrl, ShortId)
+import Shortener.Monad (MonadShortener(..))
+import Shortener.Shorten (createShortIds)
 
 runPostgresHandler :: BackendCompatible SqlBackend backend =>
   backend -> PostgresHandler backend a -> Handler a
@@ -23,6 +26,17 @@ newtype PostgresHandler backend a =
     , MonadError ServerError, MonadIO
     )
 
-instance MonadShortener PostgresHandler where
-  shorten = error "TODO: shorten"
+instance MonadShortener (PostgresHandler backend) where
+  shorten fullUrl = do
+    let urls = createShortIds fullUrl
+    shortId <- shortenWith urls fullUrl
+    writeUrl shortId fullUrl
+    return shortId
+
   expand = error "TODO: expand"
+
+shortenWith :: [ShortId] -> FullUrl -> PostgresHandler backend ShortId
+shortenWith = _
+
+writeUrl :: ShortId -> FullUrl -> PostgresHandler backend ()
+writeUrl = _
