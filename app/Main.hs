@@ -10,7 +10,7 @@ import Servant (serve, hoistServer)
 import Shortener.API (API)
 import Shortener.DB (runPostgresHandler)
 import Shortener.DB.Schema (migrateAll)
-import Shortener.Server (server)
+import Shortener.API (server)
 
 main :: IO ()
 main = do
