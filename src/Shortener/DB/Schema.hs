@@ -4,7 +4,7 @@
 module Shortener.DB.Schema where
 
 import Database.Persist.TH
-import Shortener.API
+import Shortener.Types
 
 $(share [mkPersist sqlSettings, mkMigrate "migrateAll"] [persistLowerCase|
 Url

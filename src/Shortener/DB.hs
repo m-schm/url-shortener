@@ -14,7 +14,7 @@ import Database.Persist
 import Database.Persist.Postgresql
 import GHC.Stack (HasCallStack)
 import Servant (Handler(..), ServerError)
-import Shortener.API (FullUrl, ShortId)
+import Shortener.Types (FullUrl, ShortId)
 import Shortener.DB.Schema
 import Shortener.Monad (MonadShortener(..))
 import Shortener.Shorten (createShortIds)

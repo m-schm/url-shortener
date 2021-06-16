@@ -1,6 +1,5 @@
-module Shortener.API
+module Shortener.Types
   ( ShortId(..), FullUrl(..)
-  , API
   ) where
 
 import Servant
@@ -28,7 +27,3 @@ newtype FullUrl = FullUrl Text
     , FromHttpApiData, ToHttpApiData
     , PersistField, PersistFieldSql
     )
-
-type API =
-       "shorten" :> ReqBody '[PlainText, JSON] FullUrl :> Put '[PlainText, JSON] ShortId
-  :<|> Capture "id" ShortId :> Get '[PlainText, JSON] FullUrl

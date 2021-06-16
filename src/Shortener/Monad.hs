@@ -1,6 +1,6 @@
 module Shortener.Monad (MonadShortener(..)) where
 
-import Shortener.API
+import Shortener.Types
 
 -- | The 'MonadShortener' class represents being able to shorten a 'FullUrl' to
 -- a 'ShortId' or (possibly) expand the other way. There is intentionally no

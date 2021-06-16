@@ -9,7 +9,7 @@ import Data.List (foldl')
 import qualified Data.Text as T
 import Data.Text.Encoding (encodeUtf8)
 import Data.Word (Word8)
-import Shortener.API
+import Shortener.Types
 
 -- | Creates an infinite list of 'ShortId's from a 'FullUrl' from its hash.
 -- Deterministic shortening ensures that when shortening the same URL twice,
