@@ -5,7 +5,7 @@ import qualified Crypto.Hash as C
 import Data.ByteArray (unpack)
 import Data.Function ((&))
 import Data.Functor ((<&>))
-import Data.List (tails, foldl', transpose)
+import Data.List (foldl')
 import qualified Data.Text as T
 import Data.Text.Encoding (encodeUtf8)
 import Data.Word (Word8)
