@@ -22,8 +22,10 @@ dependencies:
 - base >= 4.7 && < 5
 - aeson >= 1.5 && < 2
 - bytestring >= 0.10 && < 2
+- monad-logger >= 0.3 && < 1
 - mtl >= 2.2 && < 3
 - persistent >= 2.11 && < 3
+- persistent-postgresql >= 2.11 && < 3
 - persistent-template >= 2.9 && < 3
 - servant-server >= 0.18 && < 1
 - text >= 1.2 && < 2
@@ -44,6 +46,7 @@ default-extensions:
 - DerivingStrategies
 - FlexibleContexts
 - GeneralizedNewtypeDeriving
+- InstanceSigs
 - OverloadedStrings
 - ScopedTypeVariables
 - TypeApplications

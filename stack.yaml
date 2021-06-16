@@ -70,3 +70,4 @@ nix:
   enable: true
   packages:
   - zlib
+  - postgresql_12

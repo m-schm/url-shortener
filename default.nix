@@ -2,5 +2,5 @@
 # TODO: pin nixpkgs
 pkgs.stdenv.mkDerivation {
   name = "url-shortener";
-  buildInputs = with pkgs; [ zlib ];
+  buildInputs = with pkgs; [ zlib postgresql_12 ];
 }

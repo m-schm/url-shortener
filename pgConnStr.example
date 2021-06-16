@@ -1,0 +1,1 @@
+host=localhost user=postgres port=5432 dbname=urlshortener connect_timeout=10 password=postgres

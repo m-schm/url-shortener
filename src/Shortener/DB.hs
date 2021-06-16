@@ -1,22 +1,22 @@
 module Shortener.DB
-  ( PostgresHandler(..)
+  ( PostgresHandler
+  , runPostgresHandler
   ) where
 
 import Control.Monad.Error.Class (MonadError)
-import Control.Monad.IO.Class (MonadIO(..))
-import Servant (Handler, ServerError)
+import Servant (Handler(..), ServerError)
 import Shortener.Monad (MonadShortener(..))
 import Shortener.API (FullUrl, ShortId)
-import Control.Monad.Reader (ReaderT)
 import Database.Persist
-import Control.Monad.Except (ExceptT)
+import Database.Persist.Postgresql
+import Control.Monad.Except (ExceptT(..), lift)
 
-data DbEnv = DbEnv {} -- TODO
+runPostgresHandler :: BackendCompatible SqlBackend backend =>
+  backend -> PostgresHandler a -> Handler a
+runPostgresHandler backend (PostgresHandler ma) =
+  Handler . ExceptT . flip runSqlConn backend . lift . pure $ ma
 
-runPostgresHandler :: PostgresHandler a -> Handler a
-runPostgresHandler = _
-
-newtype PostgresHandler a = PostgresHandler (Handler a)
+newtype PostgresHandler a = PostgresHandler (Either ServerError a)
   deriving newtype
     ( Functor, Applicative, Monad
     , MonadError ServerError
