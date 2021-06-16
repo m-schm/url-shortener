@@ -12,7 +12,8 @@ import Database.Persist.Sql (PersistField, PersistFieldSql)
 -- the slash
 newtype ShortId = ShortId Text
   deriving newtype
-    ( FromJSON, ToJSON
+    ( Eq
+    , FromJSON, ToJSON
     , MimeRender PlainText, MimeUnrender PlainText
     , FromHttpApiData, ToHttpApiData
     , PersistField, PersistFieldSql
@@ -21,7 +22,8 @@ newtype ShortId = ShortId Text
 -- | Newtype wrapper for full-size URLs
 newtype FullUrl = FullUrl Text
   deriving newtype
-    ( FromJSON, ToJSON
+    ( Eq
+    , FromJSON, ToJSON
     , MimeRender PlainText, MimeUnrender PlainText
     , FromHttpApiData, ToHttpApiData
     , PersistField, PersistFieldSql
