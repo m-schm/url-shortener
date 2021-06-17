@@ -42,6 +42,7 @@ library
       FlexibleContexts
       GeneralizedNewtypeDeriving
       InstanceSigs
+      MultiParamTypeClasses
       OverloadedStrings
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints
   build-depends:
@@ -71,6 +72,7 @@ executable url-shortener-exe
       FlexibleContexts
       GeneralizedNewtypeDeriving
       InstanceSigs
+      MultiParamTypeClasses
       OverloadedStrings
   ghc-options: -threaded -rtsopts -with-rtsopts=-N -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints
   build-depends:
@@ -103,6 +105,7 @@ test-suite url-shortener-test
       FlexibleContexts
       GeneralizedNewtypeDeriving
       InstanceSigs
+      MultiParamTypeClasses
       OverloadedStrings
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:

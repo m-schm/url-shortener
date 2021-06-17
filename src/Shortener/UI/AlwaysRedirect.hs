@@ -1,4 +1,3 @@
-{-# LANGUAGE MultiParamTypeClasses #-}
 module Shortener.UI.AlwaysRedirect where
 
 import Servant

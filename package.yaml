@@ -49,6 +49,7 @@ default-extensions:
 - FlexibleContexts
 - GeneralizedNewtypeDeriving
 - InstanceSigs
+- MultiParamTypeClasses
 - OverloadedStrings
 
 executables:
