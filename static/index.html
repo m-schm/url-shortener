@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>URL shortener</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <div class="center">
+			<h1>URL shortener</h1>
+			<form id="form">
+				<input id="url" type="text" placeholder="URL">
+				<input type="submit" value="Shorten!">
+			</form>
+			<div id="result" style="display: none;">
+				<h2>Success!</h2>
+				<p>
+					Your shortened link is
+					<a id="link" href="#">...</a> (<span id="copy">click to copy</span>)
+				</p>
+			</div>
+		</div>
+
+		<script>
+			function sendShortenReq(url, cb) {
+				const xhr = new XMLHttpRequest();
+				xhr.open('PUT', '/api/shorten');
+				xhr.setRequestHeader('Content-Type', 'text/plain;charset=utf-8');
+				xhr.setRequestHeader('Accept', 'text/plain;charset=utf-8');
+				xhr.onreadystatechange = () => {
+					if(xhr.readyState === XMLHttpRequest.DONE)
+						cb(xhr.responseText);
+				}
+				xhr.send(url);
+			}
+
+			const linkEl = document.getElementById('link');
+			const copyEl = document.getElementById('copy');
+			const resultEl = document.getElementById('result');
+
+			linkEl.addEventListener('click', e => {
+				e.preventDefault();
+				navigator.clipboard.writeText(linkEl.href);
+				copyEl.innerHTML = 'copied!';
+			});
+
+			document.getElementById('form').addEventListener('submit', e => {
+				e.preventDefault();
+				sendShortenReq(document.getElementById('url').value, res => {
+					linkEl.href = `/${res}`;
+					linkEl.innerHTML = `${document.location.host}/${res}`;
+					copyEl.innerHTML = 'click to copy';
+					resultEl.style.display = 'initial';
+				});
+			});
+		</script>
+  </body>
+</html>

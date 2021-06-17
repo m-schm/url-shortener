@@ -1,0 +1,19 @@
+body {
+  display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.center {
+	margin-top: 20vh;
+	text-align: center;
+}
+
+h1, h2 {
+	font-weight: 100;
+	font-family: sans-serif;
+}
+
+div {
+	font-family: sans-serif;
+}
