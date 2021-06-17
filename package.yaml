@@ -31,6 +31,7 @@ dependencies:
 - persistent-template >= 2.9 && < 3
 - servant-server >= 0.18 && < 1
 - text >= 1.2 && < 2
+- http-media >= 0.8 && < 1
 
 library:
   source-dirs: src
