@@ -11,17 +11,19 @@ import Shortener.Monad
 import Shortener.Types
 import Shortener.UI.AlwaysRedirect
 
+type StaticPages = Get '[AlwaysRedirect] Void :<|> Raw
+
 type API =
-       "shorten" :> Raw
+       "shorten" :> StaticPages
   :<|> Capture "id" ShortId :> Get '[AlwaysRedirect] Void
   :<|> "api" :> Internal.API
-  :<|> Raw -- catchall; needs to be last
+  :<|> StaticPages -- catchall; needs to be last
 
 server :: (MonadShortener m, MonadError ServerError m) => ServerT API m
 server = staticPage :<|> unshorten :<|> Internal.server :<|> staticPage
 
-staticPage :: ServerT Raw m
-staticPage = serveDirectoryWebApp "static/"
+staticPage :: MonadError ServerError m => ServerT StaticPages m
+staticPage = redirectTo "index.html" :<|> serveDirectoryWebApp "static/"
 
 unshorten :: (MonadShortener m, MonadError ServerError m) => ShortId -> m Void
 unshorten shortId = do
