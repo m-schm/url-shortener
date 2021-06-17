@@ -16,6 +16,11 @@ import Shortener.Types
 -- a pre-used row in the DB can be returned instead of creating multiple
 -- unnecessary duplicates, while returning a stream of results ensures
 -- 'ShortId's can still be generated in the face of hash collisions
+--
+-- __NOTE:__ While the list is indeed infinite, the current implementation will
+-- repeat 'ShortId's after exhausting all possible length-'shortIdLen' strings.
+-- This could be mitigated by bailing and switching to longer strings, but
+-- seems like needless complexity for now
 createShortIds :: FullUrl -> [ShortId]
 createShortIds (FullUrl t) =
   let hash :: Digest SHA256
