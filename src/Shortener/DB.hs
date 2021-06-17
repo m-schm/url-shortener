@@ -17,7 +17,7 @@ import Servant (Handler(..), ServerError)
 import Shortener.Types (FullUrl, ShortId)
 import Shortener.DB.Schema
 import Shortener.Monad (MonadShortener(..))
-import Shortener.Shorten (createShortIds, prependProtocol)
+import Shortener.Shorten (createShortIds)
 
 runPostgresHandler :: SqlBackend -> PostgresHandler a -> Handler a
 runPostgresHandler backend (PostgresHandler ma) =
@@ -38,11 +38,10 @@ data ClaimedState
 instance MonadShortener PostgresHandler where
   shorten :: FullUrl -> PostgresHandler ShortId
   shorten fullUrl = do
-    let fullUrl' = prependProtocol fullUrl
-    let urls = createShortIds fullUrl'
-    (shortId, state) <- findUnclaimed fullUrl' urls
+    let urls = createShortIds fullUrl
+    (shortId, state) <- findUnclaimed fullUrl urls
     case state of
-      Unclaimed -> writeUrl shortId fullUrl'
+      Unclaimed -> writeUrl shortId fullUrl
       Duplicate -> pure () -- already in db, no need to write
     return shortId
 

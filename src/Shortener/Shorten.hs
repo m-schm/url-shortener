@@ -1,4 +1,4 @@
-module Shortener.Shorten (prependProtocol, createShortIds) where
+module Shortener.Shorten (createShortIds) where
 
 import Crypto.Hash (Digest, SHA256)
 import qualified Crypto.Hash as C
@@ -6,18 +6,10 @@ import Data.ByteArray (unpack)
 import Data.Function ((&))
 import Data.Functor ((<&>))
 import Data.List (foldl')
-import Data.Char (isAlpha)
 import qualified Data.Text as T
 import Data.Text.Encoding (encodeUtf8)
 import Data.Word (Word8)
 import Shortener.Types
-
--- | Prepends @http:\/\/@ unless a protocol is already specified in the
--- 'FullUrl'; leaves it alone otherwise
-prependProtocol :: FullUrl -> FullUrl
-prependProtocol fullUrl@(FullUrl url)
-  | T.isPrefixOf "://" (T.dropWhile isAlpha url) = fullUrl
-  | otherwise                                    = FullUrl ("http://" <> url)
 
 -- | Creates an infinite list of 'ShortId's from a 'FullUrl' from its hash.
 -- Deterministic shortening ensures that when shortening the same URL twice,
