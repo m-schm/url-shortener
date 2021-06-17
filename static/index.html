@@ -10,23 +10,39 @@
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 		<link rel="stylesheet" href="/style.css">
 
+		<style>
+			.result { margin-top: 2em; padding: 1em 2em 2em; border-radius: 3em; }
+			#resultOk { background-color: #0f02; }
+			#resultErr { background-color: #f002; }
+		</style>
+
 		<script>
-			function sendShortenReq(url, cb) {
+			const sendShortenReq = (url, cbOk, cbErr) => {
 				const xhr = new XMLHttpRequest();
 				xhr.open('PUT', '/api/shorten');
 				xhr.setRequestHeader('Content-Type', 'text/plain;charset=utf-8');
 				xhr.setRequestHeader('Accept', 'text/plain;charset=utf-8');
 				xhr.onreadystatechange = () => {
 					if(xhr.readyState === XMLHttpRequest.DONE)
-						cb(xhr.responseText);
+						(xhr.status === 200 ? cbOk : cbErr)(xhr.responseText);
 				}
 				xhr.send(url);
 			}
 
+			const setVisible = (el, visibility) =>
+				el.style.display = visibility ? 'block' : 'none';
+
+			// add `http://` to beginning of string unless there's already a
+			// protocol specified
+			const prependProtocol = str =>
+				/^\w+:\/\//.test(str) ? str : 'http://' + str;
+
 			window.addEventListener('DOMContentLoaded', _ => {
 				const linkEl = document.getElementById('link');
 				const copyEl = document.getElementById('copy');
-				const resultEl = document.getElementById('result');
+				const errEl = document.getElementById('err');
+				const resultOkEl = document.getElementById('resultOk');
+				const resultErrEl = document.getElementById('resultErr');
 
 				linkEl.addEventListener('click', e => {
 					e.preventDefault();
@@ -36,11 +52,17 @@
 
 				document.getElementById('form').addEventListener('submit', e => {
 					e.preventDefault();
-					sendShortenReq(document.getElementById('url').value, res => {
+					setVisible(resultOkEl, false);
+					setVisible(resultErrEl, false);
+					let url = prependProtocol(document.getElementById('url').value)
+					sendShortenReq(url, res => {
 						linkEl.href = `/${res}`;
 						linkEl.innerHTML = `${document.location.host}/${res}`;
 						copyEl.innerHTML = 'click to copy';
-						resultEl.style.display = 'initial';
+						setVisible(resultOkEl, true);
+					}, err => {
+						errEl.innerHTML = err;
+						setVisible(resultErrEl, true);
 					});
 				});
 			});
@@ -53,12 +75,16 @@
 				<input id="url" type="text" placeholder="URL">
 				<input type="submit" value="Shorten!">
 			</form>
-			<div id="result" style="display: none;">
+			<div class="result" id="resultOk" style="display: none;">
 				<h2>Success!</h2>
 				<p>
 					Your shortened link is
 					<a id="link" href="#">...</a> (<span id="copy">click to copy</span>)
 				</p>
+			</div>
+			<div class="result" id="resultErr" style="display: none;">
+				<h2>Invalid URL</h2>
+				<p>That URL was invalid: <span id="err">...</span></p>
 			</div>
 		</div>
 	</body>
