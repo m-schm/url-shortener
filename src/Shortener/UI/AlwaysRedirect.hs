@@ -5,7 +5,7 @@ import Servant
 import Network.HTTP.Media ((//), (/:))
 import Data.Void
 
--- | Dummy response type for HTML responses that always redirect
+-- | Dummy Servant response type for HTML responses that always redirect
 data AlwaysRedirect
 
 instance Accept AlwaysRedirect where
