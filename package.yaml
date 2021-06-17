@@ -44,16 +44,11 @@ library:
   - -Wredundant-constraints
 
 default-extensions:
-- DataKinds
 - DerivingStrategies
 - FlexibleContexts
 - GeneralizedNewtypeDeriving
 - InstanceSigs
 - OverloadedStrings
-- ScopedTypeVariables
-- TypeApplications
-- TypeOperators
-- UnicodeSyntax
 
 executables:
   url-shortener-exe:

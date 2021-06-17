@@ -17,7 +17,7 @@ main = do
   connStr <- BS.readFile "pgConnStr" -- TODO: move to actual config file format
   runNoLoggingT $ withPostgresqlConn connStr $ \sqlConn -> NoLoggingT $ do
     runSqlConn (runMigration migrateAll) sqlConn
-    let p = Proxy @API
+    let p = Proxy :: Proxy API
     Warp.run 8080 $
       serve p $
         hoistServer p (runPostgresHandler sqlConn) server

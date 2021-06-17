@@ -1,3 +1,5 @@
+{-# LANGUAGE ScopedTypeVariables, UnicodeSyntax #-}
+{-# LANGUAGE DataKinds, TypeOperators #-} -- for servant
 module Shortener.API (API, server) where
 
 import Control.Monad.Error.Class

@@ -37,16 +37,11 @@ library
   hs-source-dirs:
       src
   default-extensions:
-      DataKinds
       DerivingStrategies
       FlexibleContexts
       GeneralizedNewtypeDeriving
       InstanceSigs
       OverloadedStrings
-      ScopedTypeVariables
-      TypeApplications
-      TypeOperators
-      UnicodeSyntax
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints
   build-depends:
       aeson >=1.5 && <2
@@ -70,16 +65,11 @@ executable url-shortener-exe
   hs-source-dirs:
       app
   default-extensions:
-      DataKinds
       DerivingStrategies
       FlexibleContexts
       GeneralizedNewtypeDeriving
       InstanceSigs
       OverloadedStrings
-      ScopedTypeVariables
-      TypeApplications
-      TypeOperators
-      UnicodeSyntax
   ghc-options: -threaded -rtsopts -with-rtsopts=-N -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints
   build-depends:
       aeson >=1.5 && <2
@@ -106,16 +96,11 @@ test-suite url-shortener-test
   hs-source-dirs:
       test
   default-extensions:
-      DataKinds
       DerivingStrategies
       FlexibleContexts
       GeneralizedNewtypeDeriving
       InstanceSigs
       OverloadedStrings
-      ScopedTypeVariables
-      TypeApplications
-      TypeOperators
-      UnicodeSyntax
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       aeson >=1.5 && <2

@@ -1,6 +1,6 @@
 {-# LANGUAGE TemplateHaskell, QuasiQuotes, TypeFamilies, GADTs,
   StandaloneDeriving, UndecidableInstances, FlexibleInstances,
-  MultiParamTypeClasses #-}
+  MultiParamTypeClasses, DataKinds #-}
 module Shortener.DB.Schema where
 
 import Database.Persist.TH

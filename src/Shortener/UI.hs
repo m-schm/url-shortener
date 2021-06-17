@@ -1,3 +1,4 @@
+{-# LANGUAGE DataKinds, TypeOperators #-} -- for servant
 module Shortener.UI (API, server) where
 
 import Control.Monad.Error.Class (MonadError)
