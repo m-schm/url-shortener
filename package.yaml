@@ -81,3 +81,8 @@ tests:
     - -with-rtsopts=-N
     dependencies:
     - url-shortener
+    - hspec >= 2.7 && < 3
+    - hspec-discover >= 2.7 && < 3
+    - QuickCheck >= 2.14 && < 3
+    - quickcheck-instances >= 0.3 && < 1
+    - postgresql-simple >= 0.6 && < 1

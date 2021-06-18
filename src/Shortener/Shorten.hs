@@ -1,4 +1,4 @@
-module Shortener.Shorten (createShortIds) where
+module Shortener.Shorten (createShortIds, base64) where
 
 import Crypto.Hash (Digest, SHA256)
 import qualified Crypto.Hash as C

@@ -15,6 +15,7 @@ import Servant
 -- | Newtype wrapper around the shortened URL's ID - i.e. just the part after
 -- the slash
 newtype ShortId = ShortId Text
+  deriving stock Show
   deriving newtype
     ( Eq
     , FromJSON, ToJSON
@@ -39,6 +40,7 @@ instance FromHttpApiData ShortId where
 
 -- | Newtype wrapper for full-size URLs
 newtype FullUrl = FullUrl Text
+  deriving stock Show
   deriving newtype
     ( Eq
     , FromJSON, ToJSON
