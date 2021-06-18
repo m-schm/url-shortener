@@ -1,4 +1,4 @@
-# URL Shortener
+# [URL Shortener](http://url-shorten.hs.vc/)
 
 The project as it is hosts a webserver serving a web-based frontend at
 `localhost:8080`, it's just a quick no-framework wrapper around the API, which
@@ -16,8 +16,10 @@ duplicate.
 
 The postgres server expects a database specified by the connection string in
 `pgConnStr`, tests expect the same from `pgTestConnStr`. System-level
-dependencies are handled by Stack and Nix, so `nix-shell --run 'stack
-{run/build/test}` will take care of the rest.
+dependencies are handled by Stack and Nix, so assuming a system with Nix,
+`nix-shell --run 'stack {run/build/test}` will take care of the rest.
+
+Alternatively, it's already up [here](http://url-shorten.hs.vc/)!
 
 ## What could be improved
 
