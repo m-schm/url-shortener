@@ -1,10 +1,11 @@
 # URL Shortener
 
 The project as it is hosts a webserver serving a web-based frontend at
-`localhost:8080`, it's just a quick no-framework wrapper around the API. The API
-itself exposes `/shorten` (PUT) and `/:shortId` (GET) as outlined in the
-challenge, and both endpoints can accept/produce plaintext (with `Content-Type:
-text/plain;charset=utf-8`) or JSON (with `Content-Type: application/json`).
+`localhost:8080`, it's just a quick no-framework wrapper around the API, which
+is at `/api`. The API itself exposes `/api/shorten` (PUT) and `/api/:shortId`
+(GET) as outlined in the challenge, and both endpoints can accept/produce
+plaintext (with `Content-Type: text/plain;charset=utf-8`) or JSON (with
+`Content-Type: application/json`).
 
 The webserver itself is built using WAI, Warp, and Servant, and (currently)
 talks to a Postgres database. The shortened URLs are based on the SHA256 hash,
