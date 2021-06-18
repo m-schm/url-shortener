@@ -21,10 +21,13 @@ dependencies are handled by Stack and Nix, so `nix-shell --run 'stack
 
 ## What could be improved
 
-If it were a bigger project, the frontend should probably be redone using some
-frontend framework, perhaps React with Typescript or `purescript-halogen`. Also,
-the URL validation on the server is fairly coarse - it probably shouldn't accept
-nonsense like `aaaaaaaaaaaaaaaaaaaaa://`
+- If it were a bigger project, the frontend should probably be redone using some
+  frontend framework, perhaps React with Typescript or `purescript-halogen`.
+- The URL validation on the server is fairly coarse - it probably shouldn't
+  accept nonsense like `aaaaaaa:///////:///$$` or even just `://`
+- The `pgConnStr` and `pgTestConnStr` files are a bit hacky; they should
+  probably be moved to a "real" config file format, but that'd have to pull in
+  parsers and such
 
 ## Attribution
 
