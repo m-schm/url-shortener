@@ -17,9 +17,7 @@ duplicate.
 The postgres server expects a database specified by the connection string in
 `pgConnStr`, tests expect the same from `pgTestConnStr`. System-level
 dependencies are handled by Stack and Nix, so assuming a system with Nix,
-`nix-shell --run 'stack {run/build/test}` will take care of the rest.
-
-Alternatively, it's already up [here](http://url-shorten.hs.vc/)!
+`nix-shell --run 'stack {run/build/test}` will take care of the rest!
 
 ## What could be improved
 
